@@ -97,13 +97,13 @@ finden.
 
     @Test
     public void testcaseErase() {
+    //	controller.erase();
         try {
             for (int i = 0; i < 7; i++) {
-                controller.add("Mida" + i, "Ahmadi  " + i, "M", null,
-                        "fida.ahmadi@test.de" + i);
+                controller.add("Mida" + i, "Ahmadi  " + i, "M", null, "fida.ahmadi@test.de" + i);
             }
             controller.erase();
-
+            System.err.println("getEntries() "+ model.getEntries().size() );
 //            for (int i = 10; i < 20; i++) {
 //                controller.add("Mida" + i, "Ahmadi  " + i, "M", null,
 //                        "fida.ahmadi@test.de" + i);

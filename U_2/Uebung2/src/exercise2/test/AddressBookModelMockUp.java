@@ -24,13 +24,11 @@ import java.util.Collection;
 public class AddressBookModelMockUp implements
         AddressBookModel {
 
-    // true,wenn adressbuch voll
-    public boolean full;
 
     @Override
     public boolean addEntry(Entry entry) throws
             SizeLimitReachedException {
-        System.out.println("add");
+        System.out.println("added ");
         return true;
     }
 
@@ -39,8 +37,8 @@ public class AddressBookModelMockUp implements
      */
     @Override
     public Entry getEntry(String surName, String firstName) {
-        System.out.println("get");
-        return null;
+        System.out.println("getEntry");
+        return new Entry();
     }
 
     /* (non-Javadoc)
@@ -48,7 +46,7 @@ public class AddressBookModelMockUp implements
      */
     @Override
     public boolean deleteEntry(Entry entry) {
-        System.out.println("del");
+        System.out.println("Entry deleleted");
         return true;
     }
 
@@ -57,7 +55,7 @@ public class AddressBookModelMockUp implements
      */
     @Override
     public void erase() {
-        System.out.println("erase");
+        System.out.println("Entries erased ...");
     }
 
     /*
@@ -75,7 +73,7 @@ public class AddressBookModelMockUp implements
      * @see exercise2.addressbook.model.PersistenceAccess#load()
      */
     public void load() throws IOException {
-        System.out.println("load");
+        System.out.println("Entries loaded ");
     }
 
     /*
@@ -83,7 +81,7 @@ public class AddressBookModelMockUp implements
      * @see exercise2.addressbook.model.PersistenceAccess#save()
      */
     public void save() throws IOException {
-        System.out.println("save");
+        System.out.println("Entries saved");
     }
 
 }

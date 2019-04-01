@@ -22,13 +22,11 @@ public class AddressBookViewMockUp implements AddressBookView {
 
     @Override
     public void create(AddressBookAccess model, AddressBookController controller) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    	System.out.println("AddressBookView created");
     }
 
     @Override
     public void refresh() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    	System.out.println("AddressBookView refreshed");
     }
-
-    // TODO: Mock-Up erstellen
-}
+ }
