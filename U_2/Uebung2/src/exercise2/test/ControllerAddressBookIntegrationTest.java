@@ -19,13 +19,14 @@ import exercise2.addressbook.model.AddressBookModelImpl;
  * Integration Test für Addressbook und Controller.
  * 
  * Bitte Nummer der Gruppe eintragen:
- * 0
+ * 2
  * 
  * Bitte Gruppenmitglieder eintragen:
- * @author ...
- * @author ...
- * @author ...
- * @author ...
+ * @author Jovine Kamegne Foka
+ * @author Marcel Marks
+ * @author Florian Duchow
+ * @author Fida Ahmadi
+ *
  */
 public class ControllerAddressBookIntegrationTest {
 

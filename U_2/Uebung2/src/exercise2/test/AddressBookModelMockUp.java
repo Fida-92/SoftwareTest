@@ -12,17 +12,14 @@ import java.io.IOException;
 import java.util.Collection;
 
 /**
- * Uebung 2 - Komponenten und Integrationstest
- * Mock-Up für das AddressBookModel
- * 
- * Bitte Nummer der Gruppe eintragen:
- * 0
- * 
- * Bitte Gruppenmitglieder eintragen:
- * @author ...
- * @author ...
- * @author ...
- * @author ...
+ * Uebung 2 - Komponenten und Integrationstest Mock-Up für das AddressBookModel
+ *
+ * Bitte Nummer der Gruppe eintragen: 2
+ *
+ * @author Jovine Kamegne Foka
+ * @author Marcel Marks
+ * @author Florian Duchow
+ * @author Fida Ahmadi
  */
 public class AddressBookModelMockUp implements AddressBookModel {
 
@@ -61,6 +58,5 @@ public class AddressBookModelMockUp implements AddressBookModel {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-	// TODO: Mock-Up erstellen
-	
+    // TODO: Mock-Up erstellen
 }
