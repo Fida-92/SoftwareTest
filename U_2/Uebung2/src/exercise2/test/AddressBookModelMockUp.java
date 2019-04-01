@@ -21,42 +21,69 @@ import java.util.Collection;
  * @author Florian Duchow
  * @author Fida Ahmadi
  */
-public class AddressBookModelMockUp implements AddressBookModel {
+public class AddressBookModelMockUp implements
+        AddressBookModel {
+
+    // true,wenn adressbuch voll
+    public boolean full;
 
     @Override
-    public boolean addEntry(Entry entry) throws SizeLimitReachedException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean addEntry(Entry entry) throws
+            SizeLimitReachedException {
+        System.out.println("add");
+        return true;
     }
 
+    /* (non-Javadoc)
+     * @see exercise2.addressbook.model.AddressBookAccess#getEntry(java.lang.String, java.lang.String)
+     */
     @Override
     public Entry getEntry(String surName, String firstName) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        System.out.println("get");
+        return null;
     }
 
-    @Override
-    public Collection<Entry> getEntries() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
+    /* (non-Javadoc)
+     * @see exercise2.addressbook.model.AddressBookAccess#deleteEntry(exercise2.addressbook.model.Entry)
+     */
     @Override
     public boolean deleteEntry(Entry entry) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        System.out.println("del");
+        return true;
     }
 
+    /* (non-Javadoc)
+     * @see exercise2.addressbook.model.AddressBookAccess#erase()
+     */
     @Override
     public void erase() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        System.out.println("erase");
     }
 
+    /*
+     * (non-Javadoc)
+     * @see exercise2.addressbook.model.AddressBookAccess#getEntries()
+     */
     @Override
+    public Collection< Entry> getEntries() {
+        System.out.println("getEntries");
+        return null;
+    }
+
+    /*
+     * (non-Javadoc)
+     * @see exercise2.addressbook.model.PersistenceAccess#load()
+     */
     public void load() throws IOException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        System.out.println("load");
     }
 
-    @Override
+    /*
+     * (non-Javadoc)
+     * @see exercise2.addressbook.model.PersistenceAccess#save()
+     */
     public void save() throws IOException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        System.out.println("save");
     }
 
-    // TODO: Mock-Up erstellen
 }
