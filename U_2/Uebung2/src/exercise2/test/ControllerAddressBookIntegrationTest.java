@@ -12,6 +12,8 @@ import exercise2.addressbook.model.AddressBookModel;
 import exercise2.addressbook.model.AddressBookModelImpl;
 import exercise2.addressbook.model.SizeLimitReachedException;
 import java.io.File;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -40,7 +42,6 @@ public class ControllerAddressBookIntegrationTest {
      * schreiben Sie MINDESTENS einen Testfall pro Methode des interfaces. Es
      * sind Fehler zu finden.
      */
-     
     // Model component for the test
     AddressBookModel model;
 
@@ -50,6 +51,9 @@ public class ControllerAddressBookIntegrationTest {
     // Controller component for the test
     AddressBookController controller;
 
+    // size-limit of the Collection (SortedSet)
+    private static int ENTRY_MAX_SIZE = AddressBookModelImpl.sizeLimit;
+
     /**
      * @throws java.lang.Exception
      */
@@ -58,52 +62,87 @@ public class ControllerAddressBookIntegrationTest {
         // Instantiate and wire components
         this.model = new AddressBookModelImpl(addressBookFile);
         this.view = new AddressBookViewMockUp();
-        this.controller = new AddressBookControllerImpl(model,
-                view);
+        this.controller = new AddressBookControllerImpl(model, view);
     }
 
+    /**
+     * noticed error: The expected SizeLimitReachedException is not thrown if
+     * AddressBookModelImpl.sizeLimit is exceeded.
+     */
     @Test
-    public void testcaseAdd() {
+    public void testcaseAddMoreThanSizeLimit() {
         try {
-            for (int i = 0; i < 10; i++) {
-                controller.add("Mida" + i, "Ahmadi  " + i, "M", null,
-                        "fida.ahmadi@test.de" + i);
+            for (int i = 0; i < ENTRY_MAX_SIZE + 1; i++) {
+                controller.add("Fida" + i, "Ahmadi  " + i, "M", null, "fida.ahmadi@test.de" + i);
             }
-
+            // the method must fail
+            fail();
         } catch (ParameterException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
         } catch (SizeLimitReachedException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+            // not OK, if reached
         }
     }
 
+    @Test
+    public void testcaseRemoveNotExistingEntry() {
+        try {
+            controller.add("Fida", "Ahmadi  ", "M", null, "fida.ahmadi@test.de");
+            controller.add("Marcel", "Marks", "M", null, "marcel.marks@test.de");
+            controller.remove(4);
+            fail();
+
+        } catch (Exception e) {
+            // Ok, if reached;
+        }
+    }
+
+    @Test
+    public void testcaseRemoveCheckSizeAfterRemove() {
+        try {
+            controller.add("Fida", "Ahmadi  ", "M", null, "fida.ahmadi@test.de");
+            controller.add("Marcel", "Marks", "M", null, "marcel.marks@test.de");
+            controller.remove(0);
+            assertEquals(this.model.getEntries().size(), 1);
+
+        } catch (Exception e) {
+            // not Ok, if reached;
+            fail();
+        }
+    }
+
+    @Test
     public void testcaseRemove() {
         try {
-            controller.add("Mida", "Ahmadi  ", "M", null,
-                    "fida.ahmadi@test.de");
-            controller.remove(0);
-            //        controller.remove(0);
+            controller.add("Fida", "Ahmadi  ", "M", null, "fida.ahmadi@test.de");
+            controller.add("Marcel", "Marks", "M", null, "marcel.marks@test.de");
+            int count = 0;
+            while (count < 4) {
+                controller.remove(count);
+                count++;
+            }
+            fail();
+
         } catch (Exception e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+            // Ok, if reached;
+
         }
     }
 
+    /**
+     * noticed error: the Method erase(Entry entry) is not working properly as
+     * its implementation is not correct (see the line 129 => while
+     * (!entryIt.hasNext()) of the AddressBookControllerImpl class).
+     */
     @Test
-    public void testcaseErase() {
-        //	controller.erase();
+    public void testcaseEraseAllEntries() {
         try {
-            for (int i = 0; i < 7; i++) {
-                controller.add("Mida" + i, "Ahmadi  " + i, "M", null, "fida.ahmadi@test.de" + i);
+            for (int i = 0; i < ENTRY_MAX_SIZE - 3; i++) {
+                this.controller.add("Fida" + i, "Ahmadi  " + i, "M", null, "fida.ahmadi@test.de" + i);
             }
-            controller.erase();
+            this.controller.erase();
+
             System.err.println("getEntries() " + model.getEntries().size());
-//            for (int i = 10; i < 20; i++) {
-//                controller.add("Mida" + i, "Ahmadi  " + i, "M", null,
-//                        "fida.ahmadi@test.de" + i);
-//            }
+
         } catch (SizeLimitReachedException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -112,4 +151,5 @@ public class ControllerAddressBookIntegrationTest {
             e.printStackTrace();
         }
     }
+
 }
