@@ -5,16 +5,14 @@
  */
 package exercise2.test;
 
-import java.io.File;
-
-import org.junit.Before;
-
 import exercise2.addressbook.controller.AddressBookController;
 import exercise2.addressbook.controller.AddressBookControllerImpl;
 import exercise2.addressbook.controller.ParameterException;
 import exercise2.addressbook.model.AddressBookModel;
 import exercise2.addressbook.model.AddressBookModelImpl;
 import exercise2.addressbook.model.SizeLimitReachedException;
+import java.io.File;
+import org.junit.Before;
 import org.junit.Test;
 
 /**
@@ -22,6 +20,7 @@ import org.junit.Test;
  * und Controller.
  *
  * Bitte Nummer der Gruppe eintragen: 2
+ *
  * @author Jovine Kamegne Foka
  * @author Marcel Marks
  * @author Florian Duchow
@@ -33,18 +32,15 @@ public class ControllerAddressBookIntegrationTest {
     // Location of the address book file
     private static final File addressBookFile = new File("contacts.xml");
 
-    /*
-         *  Aufgabe 4
-         *  Programmieren Sie einen Integrationstest für
-AddressBookModel und AddressBookController.
-         *  Testen Sie ob die Methoden des
-exercise2.addressbook.controller.AddressBookController
-Interface zu den erwarteten Resultate im Addressbuch
-führen.
-         *  Testen Sie intensiv und schreiben Sie MINDESTENS einen
-Testfall pro Methode des interfaces. Es sind Fehler zu
-finden.  
+    /**
+     * Aufgabe 4. Programmieren Sie einen Integrationstest für AddressBookModel
+     * und AddressBookController. Testen Sie ob die Methoden des
+     * exercise2.addressbook.controller.AddressBookController Interface zu den
+     * erwarteten Resultate im Addressbuch führen. Testen Sie intensiv und
+     * schreiben Sie MINDESTENS einen Testfall pro Methode des interfaces. Es
+     * sind Fehler zu finden.
      */
+     
     // Model component for the test
     AddressBookModel model;
 
@@ -97,13 +93,13 @@ finden.
 
     @Test
     public void testcaseErase() {
-    //	controller.erase();
+        //	controller.erase();
         try {
             for (int i = 0; i < 7; i++) {
                 controller.add("Mida" + i, "Ahmadi  " + i, "M", null, "fida.ahmadi@test.de" + i);
             }
             controller.erase();
-            System.err.println("getEntries() "+ model.getEntries().size() );
+            System.err.println("getEntries() " + model.getEntries().size());
 //            for (int i = 10; i < 20; i++) {
 //                controller.add("Mida" + i, "Ahmadi  " + i, "M", null,
 //                        "fida.ahmadi@test.de" + i);
